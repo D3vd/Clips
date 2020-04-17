@@ -1,0 +1,18 @@
+.container {
+  margin: 5px;
+  padding: 10px;
+
+  .logo {
+    display: flex;
+
+    img {
+      width: 50px;
+    }
+
+    h1 {
+      font-size: 35px;
+      line-height: 50px;
+      margin: 0 10px;
+    }
+  }
+}
