@@ -1,9 +1,11 @@
 .container {
   margin: 5px;
   padding: 10px;
+  overflow: hidden;
 
   .logo {
     display: flex;
+    float: left;
 
     img {
       width: 50px;
@@ -13,6 +15,28 @@
       font-size: 35px;
       line-height: 50px;
       margin: 0 10px;
+    }
+  }
+
+  .upload {
+    float: right;
+    line-height: 50px;
+
+    label {
+      background-color: #2f7274;
+      padding: 10px 15px;
+      border-radius: 20px;
+      color: white;
+      transition: transform 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+
+    input {
+      display: none;
     }
   }
 }
