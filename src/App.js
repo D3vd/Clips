@@ -78,12 +78,14 @@ function App() {
     books.forEach((book) => {
       let authorRaw = book.book.match(/\((.*?)\)/g);
 
-      booksObj[book.raw] = {
-        raw: book.raw,
-        book: book.book,
-        name: book.book.split(authorRaw)[0].trim(),
-        author: authorRaw[0].replace('(', '').replace(')', ''),
-      };
+      if (authorRaw !== null) {
+        booksObj[book.raw] = {
+          raw: book.raw,
+          book: book.book,
+          name: book.book.split(authorRaw)[0].trim(),
+          author: authorRaw[0].replace('(', '').replace(')', ''),
+        };
+      }
     });
 
     books = [];
