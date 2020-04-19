@@ -20,7 +20,18 @@ function Clips({ quotes, activeBook }) {
       {activeQuotes.length === 0 ? (
         <Empty />
       ) : (
-        activeQuotes.map((quote) => <Quote key={uuid()} quote={quote} />)
+        <div className={styles.wrapper}>
+          <div className={styles.heading}>
+            <h1>{activeQuotes[0].book}</h1>
+          </div>
+          <div className={styles.content}>
+            <div>
+              {activeQuotes.map((quote) => (
+                <Quote key={uuid()} quote={quote} />
+              ))}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,10 +1,25 @@
 .container {
   height: 90vh;
   width: 50%;
-  overflow-y: auto;
-  box-sizing: border-box;
-  padding: 30px;
   border-left: 1px solid #000000;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+
+    .heading {
+      padding: 15px;
+
+      h1 {
+        text-align: center;
+      }
+    }
+
+    .content {
+      overflow-y: auto;
+    }
+  }
 }
 
 .empty {
