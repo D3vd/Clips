@@ -11,6 +11,8 @@ function App() {
   const [quotes, setQuotes] = useState([]);
   const [books, setBooks] = useState([]);
 
+  const [activeBook, setActiveBook] = useState("");
+
   useEffect(() => {
     parseFile(file);
 
@@ -94,15 +96,15 @@ function App() {
       books.push(booksObj[key]);
     }
 
-    setBooks(books);
+    setBooks(books.reverse());
   };
 
   return (
     <div className="App">
       <Header setFile={setFile} />
       <div className="content">
-        <Books />
-        <Clips />
+        <Books books={books} setActiveBook={setActiveBook} />
+        <Clips quotes={quotes} activeBook={activeBook} />
       </div>
     </div>
   );

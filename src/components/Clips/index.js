@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
+
+import Quote from "./quote";
 
 import styles from "./styles.module.scss";
 
-function Clips() {
+function Clips({ quotes, activeBook }) {
+  const [activeQuotes, setActiveQuotes] = useState([]);
+  // const [empty, setEmpty] = useState(true);
+
+  useEffect(() => {
+    let activeQuotes = quotes.filter((quote) => quote.raw === activeBook);
+    setActiveQuotes(activeQuotes);
+  }, [activeBook, quotes]);
+
   return (
     <div className={styles.container}>
-      <h1>Clips</h1>
+      {activeQuotes.map((quote) => (
+        <Quote key={uuid()} quote={quote} />
+      ))}
     </div>
   );
 }

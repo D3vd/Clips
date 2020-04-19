@@ -1,11 +1,15 @@
 import React from "react";
 
+import Book from "./book";
+
 import styles from "./styles.module.scss";
 
-function Books() {
+function Books({ books, setActiveBook }) {
   return (
     <div className={styles.container}>
-      <h1>Books</h1>
+      {books.map((book) => (
+        <Book key={book.raw} book={book} setActiveBook={setActiveBook} />
+      ))}
     </div>
   );
 }
