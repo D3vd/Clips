@@ -11,7 +11,7 @@ function Upload(props) {
     fileReader.readAsText(file);
   };
 
-  const handleFileRead = (e) => {
+  const handleFileRead = () => {
     const content = fileReader.result;
     props.setFile(content);
   };
