@@ -15,9 +15,11 @@ function Books({ books, setActiveBook }) {
         {books.length === 0 ? (
           <Empty />
         ) : (
-          books.map((book) => (
-            <Book key={book.raw} book={book} setActiveBook={setActiveBook} />
-          ))
+          <div className={styles.books}>
+            {books.map((book) => (
+              <Book key={book.raw} book={book} setActiveBook={setActiveBook} />
+            ))}
+          </div>
         )}
       </div>
     </div>

@@ -19,6 +19,35 @@
   }
 }
 
+.book {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 15px 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 15px;
+    opacity: 0.5;
+    font-style: italic;
+  }
+}
+
 .empty {
   margin-top: 20vh;
 
