@@ -1,0 +1,48 @@
+.wrapper {
+  height: 10vh;
+}
+
+.container {
+  margin: 15px;
+  padding: 10px 20px;
+  overflow: hidden;
+  border-radius: 50px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+
+  .logo {
+    display: flex;
+    float: left;
+
+    img {
+      width: 50px;
+    }
+
+    h1 {
+      font-size: 35px;
+      line-height: 50px;
+      margin: 0 10px;
+    }
+  }
+
+  .upload {
+    float: right;
+    line-height: 50px;
+
+    label {
+      background-color: #2f7274;
+      padding: 10px 15px;
+      border-radius: 20px;
+      color: white;
+      transition: transform 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+}
