@@ -9,9 +9,12 @@ import Clips from './components/Clips';
 function App() {
   const [file, setFile] = useState('');
   const [quotes, setQuotes] = useState([]);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     parseFile(file);
+
+    // eslint-disable-next-line
   }, [file]);
 
   const parseFile = (file) => {
@@ -48,6 +51,10 @@ function App() {
             .replace(/\r?\n|\r/g, '');
 
           return {
+            raw: book
+              .replace(/\r?\n|\r/g, '')
+              .replace(/\s+/g, '')
+              .toLowerCase(),
             book: book.replace(/\r?\n|\r/g, ''),
             quote: quote.replace(/\r?\n|\r/g, ''),
             location,
@@ -58,6 +65,34 @@ function App() {
       .filter((q) => q);
 
     setQuotes(quotes);
+    setBooksList(quotes);
+  };
+
+  const setBooksList = (quotes) => {
+    let books = quotes.map((quote) => {
+      return { book: quote.book, raw: quote.raw };
+    });
+
+    let booksObj = {};
+
+    books.forEach((book) => {
+      let authorRaw = book.book.match(/\((.*?)\)/g);
+
+      booksObj[book.raw] = {
+        raw: book.raw,
+        book: book.book,
+        name: book.book.split(authorRaw)[0].trim(),
+        author: authorRaw[0].replace('(', '').replace(')', ''),
+      };
+    });
+
+    books = [];
+
+    for (let key in booksObj) {
+      books.push(booksObj[key]);
+    }
+
+    setBooks(books);
   };
 
   return (
