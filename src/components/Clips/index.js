@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 import Quote from "./quote";
+import Empty from "./empty";
 
 import styles from "./styles.module.scss";
 
@@ -16,9 +17,11 @@ function Clips({ quotes, activeBook }) {
 
   return (
     <div className={styles.container}>
-      {activeQuotes.map((quote) => (
-        <Quote key={uuid()} quote={quote} />
-      ))}
+      {activeQuotes.length === 0 ? (
+        <Empty />
+      ) : (
+        activeQuotes.map((quote) => <Quote key={uuid()} quote={quote} />)
+      )}
     </div>
   );
 }
