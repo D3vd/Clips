@@ -9,7 +9,9 @@ import styles from "./styles.module.scss";
 
 function Clips({ quotes, activeBook }) {
   const [activeQuotes, setActiveQuotes] = useState([]);
-  // const [empty, setEmpty] = useState(true);
+
+  const [location, setLocation] = useState(false);
+  const [date, setDate] = useState(false);
 
   useEffect(() => {
     let activeQuotes = quotes.filter((quote) => quote.raw === activeBook);
@@ -26,12 +28,22 @@ function Clips({ quotes, activeBook }) {
             <h1>
               {activeQuotes[0].book} -- {activeQuotes.length} Clips
             </h1>
-            <Options />
+            <Options
+              location={location}
+              date={date}
+              setLocation={setLocation}
+              setDate={setDate}
+            />
           </div>
           <div className={styles.content}>
             <div>
               {activeQuotes.map((quote) => (
-                <Quote key={uuid()} quote={quote} />
+                <Quote
+                  key={uuid()}
+                  quote={quote}
+                  location={location}
+                  date={date}
+                />
               ))}
             </div>
           </div>
