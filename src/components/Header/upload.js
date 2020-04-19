@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 function Upload(props) {
   let fileReader;
@@ -11,7 +11,7 @@ function Upload(props) {
     fileReader.readAsText(file);
   };
 
-  const handleFileRead = (e) => {
+  const handleFileRead = () => {
     const content = fileReader.result;
     props.setFile(content);
   };

@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import './app.scss';
+import "./app.scss";
 
-import Header from './components/Header';
-import Books from './components/Books';
-import Clips from './components/Clips';
+import Header from "./components/Header";
+import Books from "./components/Books";
+import Clips from "./components/Clips";
 
 function App() {
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState("");
   const [quotes, setQuotes] = useState([]);
   const [books, setBooks] = useState([]);
+
+  const [activeBook, setActiveBook] = useState("");
 
   useEffect(() => {
     parseFile(file);
@@ -18,14 +20,14 @@ function App() {
   }, [file]);
 
   const parseFile = (file) => {
-    let quotesRaw = file.split('==========');
+    let quotesRaw = file.split("==========");
     // Do Not Parse if the array is empty
     if (quotesRaw.length < 2) return;
 
     let quotes = quotesRaw
       // eslint-disable-next-line
       .map((quoteRaw) => {
-        let quoteDirty = quoteRaw.split('\n');
+        let quoteDirty = quoteRaw.split("\n");
         // Remove empty quotes from array
         quoteRaw = quoteDirty.filter((q) => {
           return q.length > 1;
@@ -33,8 +35,8 @@ function App() {
 
         let book = quoteRaw[0];
         let quote = quoteRaw[2];
-        let location = '';
-        let time = '';
+        let location = "";
+        let time = "";
 
         let locationsRaw = quoteRaw[1];
 
@@ -43,20 +45,20 @@ function App() {
           (quote !== undefined) &
           (locationsRaw !== undefined)
         ) {
-          let locationsArray = locationsRaw.split(' ');
-          location = locationsArray[5].replace(/\r?\n|\r/g, '');
+          let locationsArray = locationsRaw.split(" ");
+          location = locationsArray[5].replace(/\r?\n|\r/g, "");
           time = locationsArray
             .slice(9, 15)
-            .join(' ')
-            .replace(/\r?\n|\r/g, '');
+            .join(" ")
+            .replace(/\r?\n|\r/g, "");
 
           return {
             raw: book
-              .replace(/\r?\n|\r/g, '')
-              .replace(/\s+/g, '')
+              .replace(/\r?\n|\r/g, "")
+              .replace(/\s+/g, "")
               .toLowerCase(),
-            book: book.replace(/\r?\n|\r/g, ''),
-            quote: quote.replace(/\r?\n|\r/g, ''),
+            book: book.replace(/\r?\n|\r/g, ""),
+            quote: quote.replace(/\r?\n|\r/g, ""),
             location,
             time,
           };
@@ -83,7 +85,7 @@ function App() {
           raw: book.raw,
           book: book.book,
           name: book.book.split(authorRaw)[0].trim(),
-          author: authorRaw[0].replace('(', '').replace(')', ''),
+          author: authorRaw[0].replace("(", "").replace(")", ""),
         };
       }
     });
@@ -94,15 +96,15 @@ function App() {
       books.push(booksObj[key]);
     }
 
-    setBooks(books);
+    setBooks(books.reverse());
   };
 
   return (
     <div className="App">
       <Header setFile={setFile} />
       <div className="content">
-        <Books />
-        <Clips />
+        <Books books={books} setActiveBook={setActiveBook} />
+        <Clips quotes={quotes} activeBook={activeBook} />
       </div>
     </div>
   );
