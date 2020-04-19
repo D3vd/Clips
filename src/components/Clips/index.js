@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import Quote from "./quote";
 import Empty from "./empty";
+import Options from "./options";
 
 import styles from "./styles.module.scss";
 
@@ -25,6 +26,7 @@ function Clips({ quotes, activeBook }) {
             <h1>
               {activeQuotes[0].book} -- {activeQuotes.length} Clips
             </h1>
+            <Options />
           </div>
           <div className={styles.content}>
             <div>
