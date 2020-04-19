@@ -22,7 +22,9 @@ function Clips({ quotes, activeBook }) {
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.heading}>
-            <h1>{activeQuotes[0].book}</h1>
+            <h1>
+              {activeQuotes[0].book} -- {activeQuotes.length} Clips
+            </h1>
           </div>
           <div className={styles.content}>
             <div>

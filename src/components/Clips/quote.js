@@ -1,10 +1,12 @@
 import React from "react";
 
+import styles from "./styles.module.scss";
+
 function Quote({ quote }) {
   return (
-    <div>
+    <div className={styles.quote}>
       <h2>{quote.quote}</h2>
-      <h3>{quote.book}</h3>
+      <hr />
     </div>
   );
 }
