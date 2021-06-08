@@ -1,0 +1,6 @@
+node_modules
+
+demo.gif
+.eslintrc.json
+.prettierrc
+now.json
